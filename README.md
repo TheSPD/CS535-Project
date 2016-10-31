@@ -1,4 +1,10 @@
 
+#Get it working
+
+1. Install anaconda - This installs most of the dependencies
+2. Install nltk stopwords corpus with nltk.download()
+3. Run the program
+
 #References:
 
 http://scikit-learn.org/stable/tutorial/text_analytics/working_with_text_data.html
