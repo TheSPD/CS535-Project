@@ -24,7 +24,7 @@ class SListener(StreamListener):
 				return False
 		elif 'warning' in data:
 			warning = json.loads(data)['warnings']
-			print warning['message']
+			# print warning['message']
 			return false
 
 	def on_status(self, status):

@@ -1,9 +1,13 @@
 
 #Get it working
 
-1. Install anaconda - This installs most of the dependencies
-2. Install nltk stopwords corpus with nltk.download()
-3. Run the program
+1. Create a directory in the machine say 'path/to/folder/' and go to this directory 'cd path/to/folder/'
+2. Create a python virtual environment using the command 'virtualenv CS535.project'. This step should create a folder inside your current directory
+3. Activate the virtual environment with the command 'source activate CS535.project'
+4. You might need to upgrade pip 'pip install --upgrade pip'.
+5. Now install tweepy. 'pip install tweepy'\
+6. Create another directory 'mkdir streaming_data'
+7. Run the program 'python streaming.py > stdout.txt 2> stderr.txt &' to run it in the background
 
 #References:
 
