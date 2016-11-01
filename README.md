@@ -20,4 +20,4 @@ http://stackoverflow.com/questions/15507172/how-to-get-bag-of-words-from-textual
 http://stackoverflow.com/questions/10554052/what-are-the-major-differences-and-benefits-of-porter-and-lancaster-stemming-alg
 http://www.cs.duke.edu/courses/spring14/compsci290/assignments/lab02.html
 http://www.nltk.org/
-
+http://badhessian.org/2012/10/collecting-real-time-twitter-data-with-the-streaming-api/
