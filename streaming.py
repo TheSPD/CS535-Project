@@ -25,11 +25,11 @@ def main():
 
     print "Streaming started..."
 
-    try: 
-        stream.filter(languages= languages, track = track)
-    except:
-        print "error!"
-        stream.disconnect()
+#    try: 
+    stream.filter(languages= languages, track = track)
+#    except:
+#        print "error!"
+#        stream.disconnect()
 
 if __name__ == '__main__':
     main()

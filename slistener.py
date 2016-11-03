@@ -1,15 +1,27 @@
 from tweepy import StreamListener
 import json, time, sys
 
+##Remove these lines
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+##Remove these lines
+
 class SListener(StreamListener):
 
 	def __init__(self, api = None, fprefix = 'streamer'):
 		self.api = api or API()
 		self.counter = 0
 		self.fprefix = fprefix
-		self.output  = open('./streaming_data/' + fprefix + '.' 
-							+ time.strftime('%Y%m%d-%H%M%S') + '.json', 'w')
+		self.fileString = './streaming_data/' + fprefix + '.' + time.strftime('%Y%m%d-%H%M%S') + '.json'
+		self.output  = open(self.fileString, 'w')
 		self.delout  = open('./streaming_data/' + 'delete.txt', 'a')
+		##Remove these lines		
+		self.gauth = GoogleAuth()
+		self.gauth.LocalWebserverAuth()
+		self.drive = GoogleDrive(self.gauth)
+		##Remove these lines
+
+		
 
 	def on_data(self, data):
 
@@ -34,9 +46,14 @@ class SListener(StreamListener):
 		self.counter += 1
 
 		if self.counter >= 20000:
+			##Remove these lines
+			file1 = self.drive.CreateFile()
+			file1.SetContentFile(self.fileString)
+			file1.Upload() # Files.insert()
+			##Remove these lines
 			self.output.close()
-			self.output = open('./streaming_data/' + self.fprefix + '.' 
-							   + str(time.strftime('%Y%m%d-%H%M%S')) + '.json', 'w')
+			self.fileString = './streaming_data/' + self.fprefix + '.' + str(time.strftime('%Y%m%d-%H%M%S')) + '.json'
+			self.output = open(self.fileString, 'w')
 			self.counter = 0
 
 		return
