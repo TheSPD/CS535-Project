@@ -1,5 +1,5 @@
 from tweepy import StreamListener
-import json, time, sys
+import json, time, sys, os
 
 ##Remove these lines
 from pydrive.auth import GoogleAuth
@@ -50,6 +50,7 @@ class SListener(StreamListener):
 			file1 = self.drive.CreateFile()
 			file1.SetContentFile(self.fileString)
 			file1.Upload() # Files.insert()
+			os.remove(self.fileString)
 			##Remove these lines
 			self.output.close()
 			self.fileString = './streaming_data/' + self.fprefix + '.' + str(time.strftime('%Y%m%d-%H%M%S')) + '.json'
