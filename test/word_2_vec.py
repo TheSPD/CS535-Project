@@ -2,6 +2,7 @@ from nltk.tokenize import TweetTokenizer
 from nltk.corpus import stopwords
 from nltk.stem.snowball import SnowballStemmer
 import json
+from collections import Counter
 
 class bagOfWords(object):
     """docstring for bagOfWords"""
@@ -16,9 +17,9 @@ class bagOfWords(object):
     """
     "textToWords
     "tokenizes text into separate words
-    "@params
+    "@params 
     "text - Input text
-    "@returns
+    "@returns 
     "words - tokenized words
     """
     def textToWords(self, text):
@@ -36,17 +37,22 @@ class bagOfWords(object):
             tweets = []
             for line in f:
                 if(line != '\n'):
-                    tweets.append(json.loads(line))
-                    text = tweets[i]['text']
+                    try:
+                        tweets.append(json.loads(line))
+                        text = tweets[i]['text']
 
-                    words = self.textToWords(text)
+                        words = self.textToWords(text)
 
-                    stemmed_words = self.stemWords(words)
+                        stemmed_words = self.stemWords(words)
 
-                    meaningful_words = self.removeStopWords(stemmed_words)
+                        meaningful_words = self.removeStopWords(stemmed_words)
 
-                    self.tweetText.append(' '.join(meaningful_words))
-                    i += 1
+                        self.tweetText.append(' '.join(meaningful_words))
+                        i += 1
+                    except Exception as e:
+                        print "Except at : " + i + "\n" + e
+                        pass
+
     """
     "createBOW
     "@params:
@@ -67,7 +73,7 @@ class bagOfWords(object):
 
 
 
-BOW = bagOfWords('../streaming_data/Twitter.Elections.Data.20161101-012808.json')
+BOW = bagOfWords('../streaming_data/test.json')
 
 BOW.process()
 

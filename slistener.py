@@ -1,10 +1,10 @@
 from tweepy import StreamListener
 import json, time, sys, os
 
-##Remove these lines
+##For Google Drive Integration
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-##Remove these lines
+##For Google Drive Integration
 
 class SListener(StreamListener):
 
@@ -15,11 +15,11 @@ class SListener(StreamListener):
 		self.fileString = './streaming_data/' + fprefix + '.' + time.strftime('%Y%m%d-%H%M%S') + '.json'
 		self.output  = open(self.fileString, 'w')
 		self.delout  = open('./streaming_data/' + 'delete.txt', 'a')
-		##Remove these lines		
+		##For Google Drive Integration		
 		self.gauth = GoogleAuth()
 		self.gauth.LocalWebserverAuth()
 		self.drive = GoogleDrive(self.gauth)
-		##Remove these lines
+		##For Google Drive Integration
 
 		
 
@@ -46,12 +46,12 @@ class SListener(StreamListener):
 		self.counter += 1
 
 		if self.counter >= 20000:
-			##Remove these lines
+			##For Google Drive Integration
 			file1 = self.drive.CreateFile()
 			file1.SetContentFile(self.fileString)
 			file1.Upload() # Files.insert()
 			os.remove(self.fileString)
-			##Remove these lines
+			##For Google Drive Integration
 			self.output.close()
 			self.fileString = './streaming_data/' + self.fprefix + '.' + str(time.strftime('%Y%m%d-%H%M%S')) + '.json'
 			self.output = open(self.fileString, 'w')
